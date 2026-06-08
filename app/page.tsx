@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CalendarCheck, Layers3, MonitorSmartphone, Palette, Sparkles, Wand2 } from "lucide-react";
+import { PortfolioHeroCards } from "@/components/PortfolioHeroCards";
 import { getAllBusinesses } from "@/lib/data";
 import { nicheDesign } from "@/lib/niche-design";
 import { BARBER_IMAGES, LASH_IMAGES, MEDICAL_IMAGES, NAIL_IMAGES, THERAPY_IMAGES, TRAVEL_IMAGES } from "@/lib/visual-assets";
@@ -38,20 +39,25 @@ export default async function PortfolioPage() {
   return (
     <main className="min-h-screen px-5 py-12">
       <section className="mx-auto max-w-6xl">
-        <header className="max-w-4xl">
-          <p className="animate-fade-up label mb-3 inline-flex items-center gap-2">
-            <Sparkles size={14} /> Portafolio · Reservas online
-          </p>
-          <h1 className="animate-fade-up text-4xl font-bold leading-[1.07] text-zinc-950 sm:text-6xl" style={{ ["--delay" as string]: "60ms" }}>
-            Apps de reservas visuales, rápidas y adaptadas a <span style={{ color: "rgb(var(--brand))" }}>cada negocio</span>
-          </h1>
-          <p className="animate-fade-up mt-5 text-lg leading-8 text-zinc-600" style={{ ["--delay" as string]: "130ms" }}>
-            Portafolio de demos para barberías, estudios de belleza, clínicas, terapeutas y agencias de viaje.
-            Cada proyecto muestra una identidad distinta, responsive y lista para presentar a clientes.
-          </p>
-          <div className="animate-fade-up mt-7 flex flex-wrap gap-3" style={{ ["--delay" as string]: "190ms" }}>
-            <a className="btn btn-primary" href="#demos">Ver demos</a>
-            <a className="btn btn-secondary" href="https://wa.me/52" target="_blank" rel="noreferrer">Cotizar una app</a>
+        <header className="grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_420px]">
+          <div className="max-w-4xl">
+            <p className="animate-fade-up label mb-3 inline-flex items-center gap-2">
+              <Sparkles size={14} /> Portafolio · Reservas online
+            </p>
+            <h1 className="animate-fade-up text-4xl font-bold leading-[1.07] text-zinc-950 sm:text-6xl" style={{ ["--delay" as string]: "60ms" }}>
+              Apps de reservas visuales, rápidas y adaptadas a <span style={{ color: "rgb(var(--brand))" }}>cada negocio</span>
+            </h1>
+            <p className="animate-fade-up mt-5 text-lg leading-8 text-zinc-600" style={{ ["--delay" as string]: "130ms" }}>
+              Portafolio de demos para barberías, estudios de belleza, clínicas, terapeutas y agencias de viaje.
+              Cada proyecto muestra una identidad distinta, responsive y lista para presentar a clientes.
+            </p>
+            <div className="animate-fade-up mt-7 flex flex-wrap gap-3" style={{ ["--delay" as string]: "190ms" }}>
+              <a className="btn btn-primary" href="#demos">Ver demos</a>
+              <a className="btn btn-secondary" href="https://wa.me/52" target="_blank" rel="noreferrer">Cotizar una app</a>
+            </div>
+          </div>
+          <div className="hidden h-[360px] items-center justify-center overflow-hidden lg:flex">
+            <PortfolioHeroCards />
           </div>
         </header>
 
