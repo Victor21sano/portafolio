@@ -26,10 +26,10 @@ const cardImages: Record<string, string> = {
 };
 
 const benefits = [
-  { icon: Palette, title: "Identidad por rubro", text: "Cada demo cambia composición, tono visual, colores y experiencia." },
-  { icon: MonitorSmartphone, title: "Responsive real", text: "Diseños pensados para móvil, tablet y escritorio desde el primer vistazo." },
-  { icon: Layers3, title: "Flujo completo", text: "Landing, selección de servicio y pantalla de reserva en una misma experiencia." },
-  { icon: Wand2, title: "Adaptable a marca", text: "Se ajusta a negocios reales sin verse como plantilla repetida." }
+  { icon: Palette, title: "Diseño a medida", text: "Cada demo tiene composición, tono visual, colores e imágenes propias." },
+  { icon: MonitorSmartphone, title: "Reservas desde el celular", text: "Experiencias claras para clientes que llegan desde móvil, tablet o desktop." },
+  { icon: Layers3, title: "Flujos listos para vender", text: "Landing, servicios y reserva conectados en una presentación completa." },
+  { icon: Wand2, title: "Identidad por marca", text: "Cada negocio se siente distinto sin perder claridad ni velocidad." }
 ];
 
 export default async function PortfolioPage() {
@@ -40,14 +40,14 @@ export default async function PortfolioPage() {
       <section className="mx-auto max-w-6xl">
         <header className="max-w-4xl">
           <p className="animate-fade-up label mb-3 inline-flex items-center gap-2">
-            <Sparkles size={14} /> Portafolio · Apps de citas
+            <Sparkles size={14} /> Portafolio · Reservas online
           </p>
           <h1 className="animate-fade-up text-4xl font-bold leading-[1.07] text-zinc-950 sm:text-6xl" style={{ ["--delay" as string]: "60ms" }}>
-            Sistemas de reservas que no parecen <span style={{ color: "rgb(var(--brand))" }}>plantillas</span>
+            Apps de reservas visuales, rápidas y adaptadas a <span style={{ color: "rgb(var(--brand))" }}>cada negocio</span>
           </h1>
           <p className="animate-fade-up mt-5 text-lg leading-8 text-zinc-600" style={{ ["--delay" as string]: "130ms" }}>
-            Seis demos visuales para mostrar cómo una experiencia de agenda puede sentirse distinta en cada negocio:
-            barbería, belleza, salud, terapia y viajes.
+            Portafolio de demos para barberías, estudios de belleza, clínicas, terapeutas y agencias de viaje.
+            Cada proyecto muestra una identidad distinta, responsive y lista para presentar a clientes.
           </p>
           <div className="animate-fade-up mt-7 flex flex-wrap gap-3" style={{ ["--delay" as string]: "190ms" }}>
             <a className="btn btn-primary" href="#demos">Ver demos</a>
