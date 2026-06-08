@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CalendarCheck, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarCheck, Layers3, MonitorSmartphone, Palette, Sparkles, Wand2 } from "lucide-react";
 import { getAllBusinesses } from "@/lib/data";
 import { nicheDesign } from "@/lib/niche-design";
 import { BARBER_IMAGES, LASH_IMAGES, MEDICAL_IMAGES, NAIL_IMAGES, THERAPY_IMAGES, TRAVEL_IMAGES } from "@/lib/visual-assets";
@@ -25,26 +25,47 @@ const cardImages: Record<string, string> = {
   viajes: TRAVEL_IMAGES.hero
 };
 
+const benefits = [
+  { icon: Palette, title: "Identidad por rubro", text: "Cada demo cambia composición, tono visual, colores y experiencia." },
+  { icon: MonitorSmartphone, title: "Responsive real", text: "Diseños pensados para móvil, tablet y escritorio desde el primer vistazo." },
+  { icon: Layers3, title: "Flujo completo", text: "Landing, selección de servicio y pantalla de reserva en una misma experiencia." },
+  { icon: Wand2, title: "Adaptable a marca", text: "Se ajusta a negocios reales sin verse como plantilla repetida." }
+];
+
 export default async function PortfolioPage() {
   const businesses = await getAllBusinesses();
 
   return (
     <main className="min-h-screen px-5 py-12">
       <section className="mx-auto max-w-6xl">
-        <header className="max-w-3xl">
+        <header className="max-w-4xl">
           <p className="animate-fade-up label mb-3 inline-flex items-center gap-2">
             <Sparkles size={14} /> Portafolio · Apps de citas
           </p>
           <h1 className="animate-fade-up text-4xl font-bold leading-[1.07] text-zinc-950 sm:text-6xl" style={{ ["--delay" as string]: "60ms" }}>
-            Una página de reservas con <span style={{ color: "rgb(var(--brand))" }}>personalidad</span> para tu negocio
+            Sistemas de reservas que no parecen <span style={{ color: "rgb(var(--brand))" }}>plantillas</span>
           </h1>
           <p className="animate-fade-up mt-5 text-lg leading-8 text-zinc-600" style={{ ["--delay" as string]: "130ms" }}>
-            Cada tarjeta es una demo real y funcional: tus clientes eligen servicio, fecha y hora,
-            y la cita se confirma sola. Elige un rubro para verlo en acción.
+            Seis demos visuales para mostrar cómo una experiencia de agenda puede sentirse distinta en cada negocio:
+            barbería, belleza, salud, terapia y viajes.
           </p>
+          <div className="animate-fade-up mt-7 flex flex-wrap gap-3" style={{ ["--delay" as string]: "190ms" }}>
+            <a className="btn btn-primary" href="#demos">Ver demos</a>
+            <a className="btn btn-secondary" href="https://wa.me/52" target="_blank" rel="noreferrer">Cotizar una app</a>
+          </div>
         </header>
 
-        <div className="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="stagger-fade mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((item) => (
+            <div key={item.title} className="rounded-xl border border-zinc-200 bg-white p-5 shadow-sm">
+              <item.icon size={22} style={{ color: "rgb(var(--brand))" }} />
+              <h2 className="mt-4 text-base font-bold text-zinc-950">{item.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-zinc-600">{item.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div id="demos" className="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {businesses.map((business) => {
             const branding = business.branding_json ?? {};
             const design = nicheDesign(business.nicho);
@@ -103,18 +124,25 @@ export default async function PortfolioPage() {
           })}
         </div>
 
-        <footer className="animate-fade-up mt-14 overflow-hidden rounded-2xl border border-zinc-200 bg-white p-6 shadow-hard sm:flex sm:items-center sm:justify-between">
+        <section className="animate-fade-up mt-14 rounded-2xl border border-zinc-200 bg-white p-6 shadow-hard sm:flex sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
             <CalendarCheck className="mt-1 shrink-0" size={22} style={{ color: "rgb(var(--brand))" }} />
             <div>
-              <p className="font-semibold text-zinc-950">¿Quieres una así para tu negocio?</p>
+              <p className="font-semibold text-zinc-950">¿Quieres presentar una app así para un negocio real?</p>
               <p className="text-sm text-zinc-600">
-                Adapto colores, servicios y textos a tu rubro. Tú dejas de contestar mensajes para agendar.
+                Adapto estructura visual, servicios, textos y flujo a la marca. El resultado queda listo para enseñar y vender.
               </p>
             </div>
           </div>
           <a className="btn btn-primary mt-4 sm:mt-0" href="https://wa.me/52" target="_blank" rel="noreferrer">
-            Contactar
+            Cotizar
+          </a>
+        </section>
+
+        <footer className="mt-8 flex flex-col gap-2 border-t border-zinc-200 pt-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+          <span>Diseñado y desarrollado como portafolio de apps de reservas.</span>
+          <a className="font-semibold text-zinc-700 transition hover:text-zinc-950" href="https://github.com/Victor21sano/portafolio" target="_blank" rel="noreferrer">
+            Ver código en GitHub
           </a>
         </footer>
       </section>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.52" stop-color="#14532d"/>
+      <stop offset="1" stop-color="#0e7490"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".7"/>
+  <circle cx="1050" cy="110" r="170" fill="rgba(255,255,255,.12)"/>
+  <circle cx="115" cy="540" r="230" fill="rgba(255,255,255,.08)"/>
+  <text x="76" y="118" fill="#bbf7d0" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" letter-spacing="3">PORTAFOLIO WEB</text>
+  <text x="76" y="244" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">Apps de reservas</text>
+  <text x="76" y="336" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="76" font-weight="800">con identidad visual</text>
+  <text x="80" y="420" fill="#dbeafe" font-family="Inter, Arial, sans-serif" font-size="32">Landings y flujos de agenda para barbería, uñas, salud, terapia y viajes.</text>
+  <g transform="translate(80 488)">
+    <rect width="244" height="58" rx="29" fill="#ffffff"/>
+    <text x="28" y="38" fill="#14532d" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Ver demos</text>
+  </g>
+  <g transform="translate(782 394)">
+    <rect width="280" height="96" rx="18" fill="rgba(255,255,255,.14)" stroke="rgba(255,255,255,.24)"/>
+    <text x="28" y="40" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">6 marcas demo</text>
+    <text x="28" y="70" fill="#dbeafe" font-family="Inter, Arial, sans-serif" font-size="18">1 sistema adaptable</text>
+  </g>
+</svg>

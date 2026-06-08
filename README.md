@@ -1,4 +1,27 @@
-# App de citas multi-tenant
+# Portafolio de apps de reservas
+
+Sitio publicado: https://portafolio2103aresdev.vercel.app/
+
+Portafolio visual de landings y flujos de reserva para negocios de servicios. Incluye demos con identidad propia para barberia, uñas, pestañas, clínica médica, terapia y viajes.
+
+## Demos principales
+
+- Home: https://portafolio2103aresdev.vercel.app/
+- Barbería: https://portafolio2103aresdev.vercel.app/barberia-norte
+- Uñas: https://portafolio2103aresdev.vercel.app/glow-nails
+- Pestañas: https://portafolio2103aresdev.vercel.app/lashes-luna
+- Clínica: https://portafolio2103aresdev.vercel.app/clinica-vida
+- Terapia: https://portafolio2103aresdev.vercel.app/espacio-calma
+- Viajes: https://portafolio2103aresdev.vercel.app/ruta-viva-mx
+
+## Enfoque visual
+
+- Cada rubro usa composición, color, tipografía e imágenes distintas.
+- Las landings evitan verse como una plantilla recoloreada.
+- Los flujos de reserva están diseñados para móvil y desktop.
+- Las imágenes son fijas y curadas por contexto, no placeholders aleatorios.
+
+## Base técnica
 
 MVP de portafolio para reservas self-service por negocio: pagina publica, calculo de disponibilidad real, panel profesional, bloqueos, recordatorios y branding desde `businesses.branding_json`.
 
@@ -87,7 +110,7 @@ Ejemplo de `branding_json`:
 
 `NOTIFIER_PROVIDER=console` registra envios en consola. Para correo usa `email` con `RESEND_API_KEY`; para WhatsApp usa `whatsapp` con credenciales Twilio.
 
-El cron llama `GET /api/cron/reminders` cada 15 minutos. Protegelo con:
+El cron llama `GET /api/cron/reminders` una vez al dia en Vercel Hobby. Protegelo con:
 
 ```bash
 CRON_SECRET=un-secreto
