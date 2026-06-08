@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CalendarCheck, Layers3, MonitorSmartphone, Palette, Sparkles, Wand2 } from "lucide-react";
+import { PortfolioBentoGallery } from "@/components/PortfolioBentoGallery";
 import { PortfolioHeroCards } from "@/components/PortfolioHeroCards";
 import { getAllBusinesses } from "@/lib/data";
 import { nicheDesign } from "@/lib/niche-design";
@@ -70,6 +71,10 @@ export default async function PortfolioPage() {
             </div>
           ))}
         </div>
+
+        <section className="mt-16">
+          <PortfolioBentoGallery />
+        </section>
 
         <div id="demos" className="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {businesses.map((business) => {
