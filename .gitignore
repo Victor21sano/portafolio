@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+.env
+.env.local
+.vercel
+*.log
+tsconfig.tsbuildinfo
+.claude
+prompt-meta.md
+plan-y-prompts.md
+revision-diseno-codex.md
