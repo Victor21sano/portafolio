@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, CalendarCheck, Layers3, MonitorSmartphone, Palette, Sparkles, Wand2 } from "lucide-react";
+import { ArrowRight, CalendarCheck, CreditCard, Layers3, MonitorSmartphone, Palette, ShoppingBag, Sparkles, Store, Wand2 } from "lucide-react";
 import { PortfolioBentoGallery } from "@/components/PortfolioBentoGallery";
 import { PortfolioHeroCards } from "@/components/PortfolioHeroCards";
 import { getAllBusinesses } from "@/lib/data";
+import { ecommerceDemos } from "@/lib/ecommerce-content";
 import { nicheDesign } from "@/lib/niche-design";
 import { BARBER_IMAGES, LASH_IMAGES, MEDICAL_IMAGES, NAIL_IMAGES, THERAPY_IMAGES, TRAVEL_IMAGES } from "@/lib/visual-assets";
 
@@ -74,6 +75,66 @@ export default async function PortfolioPage() {
 
         <section className="mt-16">
           <PortfolioBentoGallery />
+        </section>
+
+        <section className="mt-16">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="label mb-2 inline-flex items-center gap-2">
+                <Store size={14} /> Nuevas demos ecommerce
+              </p>
+              <h2 className="text-3xl font-bold leading-tight text-zinc-950 sm:text-4xl">
+                Tiendas online con dashboard, carrito y pagos
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-zinc-600">
+              Tres estilos distintos para vender moda, tecnología y productos artesanales dentro del mismo portafolio.
+            </p>
+          </div>
+
+          <div className="stagger grid gap-5 lg:grid-cols-3">
+            {ecommerceDemos.map((demo) => (
+              <Link key={demo.slug} href={`/ecommerce/${demo.slug}`} className="card hover-lift group overflow-hidden">
+                <div className="relative h-52 overflow-hidden">
+                  <Image
+                    src={demo.cardImage}
+                    alt={`${demo.name} · ${demo.category}`}
+                    fill
+                    unoptimized
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4">
+                    <span className="inline-flex rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-zinc-900">
+                      {demo.category}
+                    </span>
+                    <h3 className="mt-3 text-2xl font-black leading-tight text-white" style={{ fontFamily: demo.displayFont }}>
+                      {demo.name}
+                    </h3>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <p className="min-h-12 text-sm leading-6 text-zinc-600">{demo.headline}</p>
+                  <div className="mt-4 grid grid-cols-3 gap-2 text-xs font-semibold text-zinc-600">
+                    <span className="inline-flex items-center justify-center gap-1 rounded-lg bg-zinc-100 px-2 py-2">
+                      <Store size={14} /> Dashboard
+                    </span>
+                    <span className="inline-flex items-center justify-center gap-1 rounded-lg bg-zinc-100 px-2 py-2">
+                      <ShoppingBag size={14} /> Carrito
+                    </span>
+                    <span className="inline-flex items-center justify-center gap-1 rounded-lg bg-zinc-100 px-2 py-2">
+                      <CreditCard size={14} /> Pagos
+                    </span>
+                  </div>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold" style={{ color: `rgb(${demo.primary})` }}>
+                    Ver ecommerce
+                    <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <div id="demos" className="stagger mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

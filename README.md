@@ -3,6 +3,7 @@
 Sitio publicado: https://portafolio2103aresdev.vercel.app/
 
 Portafolio visual de landings y flujos de reserva para negocios de servicios. Incluye demos con identidad propia para barberia, uñas, pestañas, clínica médica, terapia y viajes.
+También incluye demos ecommerce con dashboard de productos, carrito persistente y métodos de pago.
 
 ## Demos principales
 
@@ -13,6 +14,9 @@ Portafolio visual de landings y flujos de reserva para negocios de servicios. In
 - Clínica: https://portafolio2103aresdev.vercel.app/clinica-vida
 - Terapia: https://portafolio2103aresdev.vercel.app/espacio-calma
 - Viajes: https://portafolio2103aresdev.vercel.app/ruta-viva-mx
+- Ecommerce moda: https://portafolio2103aresdev.vercel.app/ecommerce/atelier-musa
+- Ecommerce tecnología: https://portafolio2103aresdev.vercel.app/ecommerce/voltix-lab
+- Ecommerce artesanal: https://portafolio2103aresdev.vercel.app/ecommerce/mercado-raiz
 
 ## Enfoque visual
 
@@ -20,6 +24,7 @@ Portafolio visual de landings y flujos de reserva para negocios de servicios. In
 - Las landings evitan verse como una plantilla recoloreada.
 - Los flujos de reserva están diseñados para móvil y desktop.
 - Las imágenes son fijas y curadas por contexto, no placeholders aleatorios.
+- Los ecommerce comparten motor de carrito, pero cada demo cambia estructura visual, tono y jerarquía.
 
 ## Base técnica
 
