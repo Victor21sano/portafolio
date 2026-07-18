@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ArrowLeft, Scissors } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
+import { BarberPicker } from "@/components/barberia/BarberPicker";
 import type { NicheLayoutProps } from "@/components/niche/types";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -12,6 +13,7 @@ const GOLD = "#C9A227";
 
 export function BlackFoldAppointment({ business, services, selectedService, selectedDate, slots, design, appointmentName }: NicheLayoutProps) {
   const card = useRef<HTMLDivElement>(null);
+  const [barbero, setBarbero] = useState("");
 
   useIso(() => {
     if (!card.current) return;
@@ -52,6 +54,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
         </div>
 
         <div ref={card}>
+          <BarberPicker value={barbero} onChange={setBarbero} />
           <BookingForm
             business={business}
             services={services}
@@ -61,7 +64,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
             design={design}
             appointmentName={appointmentName}
             dark
-            extraSelects={[{ name: "barbero", label: "Barbero de preferencia", options: ["Carlos", "Miguel", "Andrés"] }]}
+            extraNote={barbero ? `Barbero de preferencia: ${barbero}` : undefined}
             commentsField
           />
         </div>
