@@ -31,7 +31,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
           <Link href={`/${business.slug}`} className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
             <Scissors size={20} style={{ color: GOLD }} /> BLACK<span style={{ color: GOLD }}>FOLD</span>
           </Link>
-          <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 py-2 text-sm text-[#B9B9B9] transition hover:text-white">
+          <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 py-2.5 -my-2.5 text-sm text-[#B9B9B9] transition hover:text-white">
             <ArrowLeft size={16} /> Volver al inicio
           </Link>
         </div>
@@ -67,7 +67,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
         </div>
 
         <p className="mt-10 text-center text-sm text-[#6A6A6A]">
-          <Link href={`/${business.slug}`} className="inline-block py-2 transition hover:text-white" style={{ color: GOLD }}>
+          <Link href={`/${business.slug}`} className="inline-block py-2.5 -my-2.5 transition hover:text-white" style={{ color: GOLD }}>
             ← Volver a BLACK FOLD BARBER
           </Link>
         </p>
