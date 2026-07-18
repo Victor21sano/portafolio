@@ -79,16 +79,16 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
               Agendar cita
             </Link>
           </div>
-          <button className="text-white md:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Menú" aria-expanded={menuOpen}>
+          <button className="-m-2 p-2 text-white md:hidden" onClick={() => setMenuOpen((v) => !v)} aria-label="Menú" aria-expanded={menuOpen}>
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </nav>
         {menuOpen ? (
           <div className="border-t border-white/5 bg-[#0B0B0B] px-5 py-4 md:hidden">
             <div className="flex flex-col gap-4 text-[#C9C9C9]">
-              <a href="#servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
-              <a href="#nosotros" onClick={() => setMenuOpen(false)}>Nosotros</a>
-              <a href="#galeria" onClick={() => setMenuOpen(false)}>Galería</a>
+              <a href="#servicios" className="py-2" onClick={() => setMenuOpen(false)}>Servicios</a>
+              <a href="#nosotros" className="py-2" onClick={() => setMenuOpen(false)}>Nosotros</a>
+              <a href="#galeria" className="py-2" onClick={() => setMenuOpen(false)}>Galería</a>
               <Link href={agendar} className="rounded-full px-5 py-2.5 text-center font-semibold text-black" style={{ backgroundColor: GOLD }}>
                 Agendar cita
               </Link>
@@ -247,7 +247,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
               <a href="#" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Instagram size={18} /></a>
               <a href="#" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Facebook size={18} /></a>
             </div>
-            <Link href={agendar} className="mt-5 inline-block font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
+            <Link href={agendar} className="mt-3 inline-block py-2 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} BLACK FOLD BARBER. Todos los derechos reservados.</p>
