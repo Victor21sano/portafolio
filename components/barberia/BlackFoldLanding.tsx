@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, Facebook, ChevronRight } from "lucide-react";
+import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, Facebook, ChevronRight, Zap, Droplets } from "lucide-react";
 import { BARBER_IMAGES } from "@/lib/visual-assets";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -13,10 +13,11 @@ const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const GOLD = "#C9A227";
 
 const SERVICES = [
-  { icon: Scissors, name: "Corte clásico", desc: "Tijera y máquina con acabado limpio y atemporal.", price: "$180" },
-  { icon: Sparkles, name: "Fade / Degradado", desc: "Degradados precisos, del skin fade al taper.", price: "$220" },
-  { icon: Crown, name: "Arreglo de barba", desc: "Perfilado, toalla caliente y aceite premium.", price: "$140" },
-  { icon: Star, name: "Corte + barba", desc: "La experiencia completa BLACK FOLD.", price: "$280" }
+  { icon: Scissors, name: "Corte de cabello", desc: "Corte a tu medida, tijera y máquina con acabado limpio.", price: "$185" },
+  { icon: Crown, name: "Delineado de barba", desc: "Perfilado preciso con toalla caliente y producto premium.", price: "$120" },
+  { icon: Sparkles, name: "Delineado de ceja", desc: "Línea limpia que enmarca tu rostro.", price: "$50" },
+  { icon: Zap, name: "Grecas y diseños", desc: "Diseños freestyle y grecas con detalle fino.", price: "$50" },
+  { icon: Droplets, name: "Pigmentación", desc: "Rellena y define zonas despobladas de barba o cabello.", price: "$30" }
 ];
 
 const BENEFITS = [
@@ -69,7 +70,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0B0B0B]/70 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
           <a href="#top" className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-            <Scissors size={20} style={{ color: GOLD }} /> BLACK<span style={{ color: GOLD }}>FOLD</span>
+            <Scissors size={20} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-[#C9C9C9] md:flex">
             <a href="#servicios" className="transition hover:text-white">Servicios</a>
@@ -100,7 +101,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       {/* ---------- HERO ---------- */}
       <section id="top" className="bf-hero relative flex min-h-screen items-center overflow-hidden">
         <div className="bf-hero-bg absolute inset-0 will-change-transform">
-          <Image src={BARBER_IMAGES.hero} alt="Barbería BLACK FOLD" fill priority unoptimized className="object-cover" />
+          <Image src={BARBER_IMAGES.hero} alt="Barbería PATRON BARBER" fill priority unoptimized className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/85 to-[#0B0B0B]/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent" />
@@ -136,7 +137,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
             <h2 className="text-4xl font-bold uppercase sm:text-5xl" style={{ fontFamily: "var(--font-oswald)" }}>Nuestros servicios</h2>
             <p className="mt-3 text-[#8A8A8A]">Precisión y estilo en cada detalle.</p>
           </div>
-          <div className="stagger-fade grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="stagger-fade grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
               <div
                 key={s.name}
@@ -160,14 +161,14 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <section id="nosotros" className="border-y border-white/5 bg-[#0E0E0E] py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
           <div className="animate-fade-up relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
-            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en BLACK FOLD" fill unoptimized className="object-cover" />
+            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en PATRON BARBER" fill unoptimized className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/60 to-transparent" />
           </div>
           <div className="animate-fade-up">
             <span className="mb-3 block h-px w-16 bg-gradient-to-r from-[#C9A227] to-transparent" />
             <h2 className="text-4xl font-bold uppercase sm:text-5xl" style={{ fontFamily: "var(--font-oswald)" }}>Sobre nosotros</h2>
             <p className="mt-6 text-lg leading-8 text-[#B9B9B9]">
-              En <strong className="text-white">BLACK FOLD BARBER</strong> combinamos técnica, estilo y precisión para
+              En <strong className="text-white">PATRON BARBER</strong> combinamos técnica, estilo y precisión para
               ofrecer una experiencia completa de barbería. Cada corte está diseñado para resaltar tu personalidad y
               darte una imagen impecable.
             </p>
@@ -226,7 +227,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-              <Scissors size={18} style={{ color: GOLD }} /> BLACK<span style={{ color: GOLD }}>FOLD</span>
+              <Scissors size={18} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
             </p>
             <p className="mt-3 text-sm text-[#8A8A8A]">Barbería premium para hombres con estilo.</p>
           </div>
@@ -250,7 +251,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
             <Link href={agendar} className="mt-3 inline-block py-2.5 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
           </div>
         </div>
-        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} BLACK FOLD BARBER. Todos los derechos reservados.</p>
+        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} PATRON BARBER. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
