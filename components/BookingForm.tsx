@@ -175,9 +175,9 @@ export function BookingForm({
     : slots;
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[360px_1fr]" data-theme={dark ? "dark" : undefined}>
+    <div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)]" data-theme={dark ? "dark" : undefined}>
       {/* ----- Columna izquierda: servicio + resumen ----- */}
-      <aside className="space-y-4 lg:sticky lg:top-6 lg:self-start">
+      <aside className="min-w-0 space-y-4 lg:sticky lg:top-6 lg:self-start">
         <div className="card p-4">
           <p className="label mb-3 flex items-center gap-2">
             <Sparkles size={14} /> Servicio
@@ -234,7 +234,7 @@ export function BookingForm({
       </aside>
 
       {/* ----- Columna derecha: fecha, horarios, contacto ----- */}
-      <form action={action} className="card p-5 sm:p-6">
+      <form action={action} className="card min-w-0 p-5 sm:p-6">
         <input type="hidden" name="slug" value={business.slug} />
         <input type="hidden" name="serviceId" value={selectedService?.id ?? ""} />
         <input type="hidden" name="slot" value={selectedSlot} />

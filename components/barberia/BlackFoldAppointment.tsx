@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ArrowLeft, Scissors } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
+import { BarberPicker } from "@/components/barberia/BarberPicker";
 import type { NicheLayoutProps } from "@/components/niche/types";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -12,6 +13,7 @@ const GOLD = "#C9A227";
 
 export function BlackFoldAppointment({ business, services, selectedService, selectedDate, slots, design, appointmentName }: NicheLayoutProps) {
   const card = useRef<HTMLDivElement>(null);
+  const [barbero, setBarbero] = useState("");
 
   useIso(() => {
     if (!card.current) return;
@@ -31,7 +33,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
           <Link href={`/${business.slug}`} className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
             <Scissors size={20} style={{ color: GOLD }} /> BLACK<span style={{ color: GOLD }}>FOLD</span>
           </Link>
-          <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 text-sm text-[#B9B9B9] transition hover:text-white">
+          <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 py-2.5 -my-2.5 text-sm text-[#B9B9B9] transition hover:text-white">
             <ArrowLeft size={16} /> Volver al inicio
           </Link>
         </div>
@@ -52,6 +54,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
         </div>
 
         <div ref={card}>
+          <BarberPicker value={barbero} onChange={setBarbero} />
           <BookingForm
             business={business}
             services={services}
@@ -61,13 +64,13 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
             design={design}
             appointmentName={appointmentName}
             dark
-            extraSelects={[{ name: "barbero", label: "Barbero de preferencia", options: ["Carlos", "Miguel", "Andrés"] }]}
+            extraNote={barbero ? `Barbero de preferencia: ${barbero}` : undefined}
             commentsField
           />
         </div>
 
         <p className="mt-10 text-center text-sm text-[#6A6A6A]">
-          <Link href={`/${business.slug}`} className="transition hover:text-white" style={{ color: GOLD }}>
+          <Link href={`/${business.slug}`} className="inline-block py-2.5 -my-2.5 transition hover:text-white" style={{ color: GOLD }}>
             ← Volver a BLACK FOLD BARBER
           </Link>
         </p>
