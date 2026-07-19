@@ -41,7 +41,15 @@ export async function getService(serviceId: string, client?: Db) {
   return data;
 }
 
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/** staffId se interpola en filtros PostgREST (.or): solo se acepta un UUID. */
+function assertStaffId(staffId?: string) {
+  if (staffId && !UUID_RE.test(staffId)) throw new Error("staffId inválido");
+}
+
 export async function getWorkingHours(businessId: string, client?: Db, staffId?: string) {
+  assertStaffId(staffId);
   const supabase = client ?? createServerSupabase();
   let query = supabase
     .from("working_hours")
@@ -56,6 +64,7 @@ export async function getWorkingHours(businessId: string, client?: Db, staffId?:
 }
 
 export async function getAppointmentsForRange(businessId: string, fromIso: string, toIso: string, client?: Db, staffId?: string) {
+  assertStaffId(staffId);
   const supabase = client ?? createServerSupabase();
   let query = supabase
     .from("appointments")
@@ -71,6 +80,7 @@ export async function getAppointmentsForRange(businessId: string, fromIso: strin
 }
 
 export async function getTimeOffForRange(businessId: string, fromIso: string, toIso: string, client?: Db, staffId?: string) {
+  assertStaffId(staffId);
   const supabase = client ?? createServerSupabase();
   let query = supabase
     .from("time_off")
