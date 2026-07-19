@@ -5,7 +5,7 @@ insert into businesses (
 (
   '11111111-1111-1111-1111-111111111111',
   'barberia-norte',
-  'PatronBarber',
+  'Patrón Barbería',
   'barberia',
   'America/Mexico_City',
   'dueno@barberianorte.test',
@@ -27,6 +27,9 @@ insert into businesses (
   }'::jsonb
 )
 on conflict (slug) do nothing;
+
+-- Nota: los horarios reales por barbero (staff) se crean vía Auth Admin API + PostgREST
+-- porque users.id referencia auth.users. Ver docs/superpowers/specs/2026-07-18-agenda-por-barbero-design.md
 
 insert into services (business_id, nombre, descripcion, duracion_min, precio, activo) values
 ('11111111-1111-1111-1111-111111111111', 'Corte de cabello', 'Corte a tu medida con acabado limpio.', 45, 185, true),

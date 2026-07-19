@@ -50,7 +50,7 @@ export function BlackFoldAppointment({
       <header className="border-b border-white/5 bg-[#0B0B0B]/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <Link href={`/${business.slug}`} className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-            <Scissors size={20} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
+            <Scissors size={20} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
           </Link>
           <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 py-2.5 -my-2.5 text-sm text-[#B9B9B9] transition hover:text-white">
             <ArrowLeft size={16} /> Volver al inicio
@@ -91,7 +91,7 @@ export function BlackFoldAppointment({
 
         <p className="mt-10 text-center text-sm text-[#6A6A6A]">
           <Link href={`/${business.slug}`} className="inline-block py-2.5 -my-2.5 transition hover:text-white" style={{ color: GOLD }}>
-            ← Volver a PATRON BARBER
+            ← Volver a PATRÓN BARBERÍA
           </Link>
         </p>
       </main>

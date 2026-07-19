@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, Facebook, ChevronRight, Zap, Droplets } from "lucide-react";
+import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, MessageCircle, Music2, ChevronRight, Zap, Droplets } from "lucide-react";
 import { BARBER_IMAGES } from "@/lib/visual-assets";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -70,7 +70,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0B0B0B]/70 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
           <a href="#top" className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-            <Scissors size={20} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
+            <Scissors size={20} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-[#C9C9C9] md:flex">
             <a href="#servicios" className="transition hover:text-white">Servicios</a>
@@ -101,7 +101,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       {/* ---------- HERO ---------- */}
       <section id="top" className="bf-hero relative flex min-h-screen items-center overflow-hidden">
         <div className="bf-hero-bg absolute inset-0 will-change-transform">
-          <Image src={BARBER_IMAGES.hero} alt="Barbería PATRON BARBER" fill priority unoptimized className="object-cover" />
+          <Image src={BARBER_IMAGES.hero} alt="PATRÓN Barbería" fill priority unoptimized className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/85 to-[#0B0B0B]/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent" />
@@ -161,16 +161,15 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <section id="nosotros" className="border-y border-white/5 bg-[#0E0E0E] py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
           <div className="animate-fade-up relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
-            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en PATRON BARBER" fill unoptimized className="object-cover" />
+            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en PATRÓN Barbería" fill unoptimized className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/60 to-transparent" />
           </div>
           <div className="animate-fade-up">
             <span className="mb-3 block h-px w-16 bg-gradient-to-r from-[#C9A227] to-transparent" />
             <h2 className="text-4xl font-bold uppercase sm:text-5xl" style={{ fontFamily: "var(--font-oswald)" }}>Sobre nosotros</h2>
             <p className="mt-6 text-lg leading-8 text-[#B9B9B9]">
-              En <strong className="text-white">PATRON BARBER</strong> combinamos técnica, estilo y precisión para
-              ofrecer una experiencia completa de barbería. Cada corte está diseñado para resaltar tu personalidad y
-              darte una imagen impecable.
+              En <strong className="text-white">PATRÓN BARBERÍA</strong> combinamos técnica, estilo y precisión.
+              Zabdiel y Alejandro te atienden con cita para que tu corte salga como lo imaginas, sin esperas.
             </p>
             {/* Beneficios */}
             <div className="mt-8 grid grid-cols-2 gap-3">
@@ -227,31 +226,31 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-              <Scissors size={18} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
+              <Scissors size={18} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
             </p>
-            <p className="mt-3 text-sm text-[#8A8A8A]">Barbería premium para hombres con estilo.</p>
+            <p className="mt-3 text-sm text-[#8A8A8A]">Barbería en Avenida Salamanca 312. Cortes con cita, sin esperas.</p>
           </div>
           <div className="text-sm text-[#B9B9B9]">
             <p className="mb-3 font-semibold uppercase tracking-wider text-white">Contacto</p>
-            <p className="flex items-center gap-2"><MapPin size={15} style={{ color: GOLD }} /> Av. Reforma 123, CDMX</p>
-            <p className="mt-2 flex items-center gap-2"><Phone size={15} style={{ color: GOLD }} /> 55 1234 5678</p>
+            <p className="flex items-center gap-2"><MapPin size={15} style={{ color: GOLD }} /> Avenida Salamanca 312</p>
+            <a href="tel:+524646540934" className="mt-2 flex items-center gap-2 transition hover:text-white"><Phone size={15} style={{ color: GOLD }} /> 464 654 0934</a>
+            <a href="https://wa.me/message/OOBS3FU4ZLVSB1" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center gap-2 transition hover:text-white"><MessageCircle size={15} style={{ color: GOLD }} /> WhatsApp</a>
           </div>
           <div className="text-sm text-[#B9B9B9]">
             <p className="mb-3 font-semibold uppercase tracking-wider text-white">Horario</p>
-            <p>Lun – Vie · 10:00 – 20:00</p>
-            <p className="mt-1">Sábado · 09:00 – 18:00</p>
-            <p className="mt-1">Domingo · Cerrado</p>
+            <p>Lun – Sáb · 12:00 – 8:00 pm</p>
+            <p className="mt-1">Domingo · 10:00 am – 2:00 pm</p>
           </div>
           <div className="text-sm">
             <p className="mb-3 font-semibold uppercase tracking-wider text-white">Síguenos</p>
             <div className="flex gap-3">
-              <a href="#" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Instagram size={18} /></a>
-              <a href="#" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Facebook size={18} /></a>
+              <a href="https://www.instagram.com/p.a.t.r.o.n_b.a.r.b.e.r" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Instagram size={18} /></a>
+              <a href="https://www.tiktok.com/@p.a.t.r.o.n_barber" target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Music2 size={18} /></a>
             </div>
             <Link href={agendar} className="mt-3 inline-block py-2.5 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
           </div>
         </div>
-        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} PATRON BARBER. Todos los derechos reservados.</p>
+        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} PATRÓN BARBERÍA. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
