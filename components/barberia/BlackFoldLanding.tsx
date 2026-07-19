@@ -70,7 +70,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0B0B0B]/70 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
           <a href="#top" className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-            <Scissors size={20} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
+            <Scissors size={20} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBER</span>
           </a>
           <div className="hidden items-center gap-8 text-sm font-medium text-[#C9C9C9] md:flex">
             <a href="#servicios" className="transition hover:text-white">Servicios</a>
@@ -101,7 +101,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       {/* ---------- HERO ---------- */}
       <section id="top" className="bf-hero relative flex min-h-screen items-center overflow-hidden">
         <div className="bf-hero-bg absolute inset-0 will-change-transform">
-          <Image src={BARBER_IMAGES.hero} alt="PATRÓN Barbería" fill priority unoptimized className="object-cover" />
+          <Image src={BARBER_IMAGES.hero} alt="PATRÓN BARBER" fill priority unoptimized className="object-cover" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B] via-[#0B0B0B]/85 to-[#0B0B0B]/40" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent" />
@@ -161,14 +161,14 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
       <section id="nosotros" className="border-y border-white/5 bg-[#0E0E0E] py-24">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 lg:grid-cols-2">
           <div className="animate-fade-up relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10">
-            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en PATRÓN Barbería" fill unoptimized className="object-cover" />
+            <Image src={BARBER_IMAGES.about} alt="Barbero realizando un corte en PATRÓN BARBER" fill unoptimized className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/60 to-transparent" />
           </div>
           <div className="animate-fade-up">
             <span className="mb-3 block h-px w-16 bg-gradient-to-r from-[#C9A227] to-transparent" />
             <h2 className="text-4xl font-bold uppercase sm:text-5xl" style={{ fontFamily: "var(--font-oswald)" }}>Sobre nosotros</h2>
             <p className="mt-6 text-lg leading-8 text-[#B9B9B9]">
-              En <strong className="text-white">PATRÓN BARBERÍA</strong> combinamos técnica, estilo y precisión.
+              En <strong className="text-white">PATRÓN BARBER</strong> combinamos técnica, estilo y precisión.
               Zabdiel y Alejandro te atienden con cita para que tu corte salga como lo imaginas, sin esperas.
             </p>
             {/* Beneficios */}
@@ -226,7 +226,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-              <Scissors size={18} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
+              <Scissors size={18} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBER</span>
             </p>
             <p className="mt-3 text-sm text-[#8A8A8A]">Barbería en Avenida Salamanca 312. Cortes con cita, sin esperas.</p>
           </div>
@@ -250,7 +250,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
             <Link href={agendar} className="mt-3 inline-block py-2.5 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
           </div>
         </div>
-        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} PATRÓN BARBERÍA. Todos los derechos reservados.</p>
+        <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} PATRÓN BARBER. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
