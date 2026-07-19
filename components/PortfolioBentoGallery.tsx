@@ -7,7 +7,7 @@ const mediaItems: MediaItemType[] = [
   {
     id: 1,
     type: "image",
-    title: "PatronBarber",
+    title: "Patrón Barbería",
     desc: "Landing oscura, editorial y precisa para barbería premium.",
     url: BARBER_IMAGES.hero,
     span: "md:col-span-1 md:row-span-3 sm:col-span-1 sm:row-span-2"

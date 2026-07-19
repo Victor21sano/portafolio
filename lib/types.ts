@@ -1,5 +1,13 @@
 export type Json = Record<string, unknown>;
 
+/** Presentación de un barbero/staff (vive en businesses.branding_json.barberos). */
+export type BarberInfo = {
+  id: string;
+  nombre: string;
+  especialidad: string;
+  foto: string;
+};
+
 export type Branding = {
   primary?: string;
   accent?: string;
@@ -11,6 +19,7 @@ export type Branding = {
   cta?: string;
   appointmentName?: string;
   font?: string;
+  barberos?: BarberInfo[];
 };
 
 export type Business = {

@@ -18,7 +18,8 @@ const bookingSchema = z.object({
   nombre: z.string().min(2),
   telefono: z.string().min(8),
   email: z.string().email().optional().or(z.literal("")),
-  notas: z.string().max(1000).optional()
+  notas: z.string().max(1000).optional(),
+  staffId: z.string().uuid().optional().or(z.literal(""))
 });
 
 export async function createBooking(_: unknown, formData: FormData) {
@@ -37,8 +38,17 @@ export async function createBooking(_: unknown, formData: FormData) {
   const service = await getService(input.serviceId);
   if (service.business_id !== business.id) return { ok: false, message: "Servicio invalido." };
 
+  const staffId = input.staffId || undefined;
+  const barberos: { id: string }[] = business.branding_json?.barberos ?? [];
+  if (staffId && !barberos.some((b) => b.id === staffId)) {
+    return { ok: false, message: "Barbero inválido." };
+  }
+  if (!staffId && barberos.length > 0) {
+    return { ok: false, message: "Elige a tu barbero." };
+  }
+
   const date = formatInTimeZone(new Date(startUtc), business.timezone, "yyyy-MM-dd");
-  const slots = await getAvailableSlots(business, service, date);
+  const slots = await getAvailableSlots(business, service, date, staffId);
   const isAvailable = slots.some((slot) => slot.startUtc === startUtc && slot.endUtc === endUtc);
 
   if (!isAvailable) {
@@ -48,16 +58,43 @@ export async function createBooking(_: unknown, formData: FormData) {
   const notas = input.notas?.trim() || null;
 
   const supabase = createServerSupabase();
-  const { data, error } = await supabase.rpc("create_public_appointment", {
-    p_business_id: business.id,
-    p_service_id: service.id,
-    p_cliente_nombre: input.nombre,
-    p_cliente_telefono: input.telefono,
-    p_cliente_email: input.email ?? null,
-    p_inicio_ts: startUtc,
-    p_fin_ts: endUtc,
-    p_notas: notas
-  }).single<Appointment>();
+  let data: Appointment | null = null;
+  let error: unknown = null;
+  if (staffId) {
+    const res = await supabase
+      .from("appointments")
+      .insert({
+        business_id: business.id,
+        service_id: service.id,
+        staff_id: staffId,
+        cliente_nombre: input.nombre,
+        cliente_telefono: input.telefono,
+        cliente_email: input.email || null,
+        inicio_ts: startUtc,
+        fin_ts: endUtc,
+        estado: "confirmada",
+        notas
+      })
+      .select("*")
+      .single<Appointment>();
+    data = res.data;
+    error = res.error;
+  } else {
+    const res = await supabase
+      .rpc("create_public_appointment", {
+        p_business_id: business.id,
+        p_service_id: service.id,
+        p_cliente_nombre: input.nombre,
+        p_cliente_telefono: input.telefono,
+        p_cliente_email: input.email ?? null,
+        p_inicio_ts: startUtc,
+        p_fin_ts: endUtc,
+        p_notas: notas
+      })
+      .single<Appointment>();
+    data = res.data;
+    error = res.error;
+  }
 
   if (error || !data) {
     return { ok: false, message: "Ese horario se ocupo mientras confirmabas. Elige otro horario." };

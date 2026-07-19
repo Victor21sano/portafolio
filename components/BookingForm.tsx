@@ -41,7 +41,9 @@ export function BookingForm({
   extraInputs,
   commentsField = false,
   extraNote,
-  slotShift
+  slotShift,
+  staffId,
+  staffRequired = false
 }: {
   business: Business;
   services: Service[];
@@ -62,6 +64,10 @@ export function BookingForm({
   extraNote?: string;
   /** Filtra horarios por turno: "am" (antes de 14:00) o "pm" (14:00+). Para elegir médico por turno. */
   slotShift?: "am" | "pm";
+  /** staff_id del barbero elegido; viaja como hidden input y se preserva al navegar. */
+  staffId?: string;
+  /** Si true, no se muestran horarios ni se puede enviar sin staffId. */
+  staffRequired?: boolean;
 }) {
   const router = useRouter();
   const reduce = useReducedMotion();
@@ -155,12 +161,13 @@ export function BookingForm({
   // Al cambiar de servicio, fecha o turno, los horarios cambian: limpia la selección.
   useEffect(() => {
     setSelectedSlot("");
-  }, [selectedService?.id, selectedDate, slotShift]);
+  }, [selectedService?.id, selectedDate, slotShift, staffId]);
 
   function navigate(next: { service?: string; date?: string }) {
     const params = new URLSearchParams();
     params.set("service", next.service ?? selectedService?.id ?? "");
     params.set("date", next.date ?? selectedDate);
+    if (staffId) params.set("barbero", staffId);
     startNav(() => router.push(`?${params.toString()}`, { scroll: false }));
   }
 
@@ -239,6 +246,7 @@ export function BookingForm({
         <input type="hidden" name="serviceId" value={selectedService?.id ?? ""} />
         <input type="hidden" name="slot" value={selectedSlot} />
         <input type="hidden" name="notas" value={notasValue} />
+        <input type="hidden" name="staffId" value={staffId ?? ""} />
 
         {/* Fecha */}
         <p className="label mb-3 flex items-center gap-2">
@@ -276,44 +284,55 @@ export function BookingForm({
         </p>
 
         <div className="min-h-[88px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={`${selectedService?.id}-${selectedDate}-${slotShift ?? "all"}`}
-              initial={reduce ? false : "hidden"}
-              animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.025 } } }}
-              className="grid grid-cols-3 gap-2 sm:grid-cols-4"
-              style={{ opacity: slotsBusy ? 0.5 : 1, transition: "opacity 180ms ease" }}
-            >
-              {visibleSlots.map((slot) => {
-                const value = `${slot.startUtc}|${slot.endUtc}`;
-                const active = value === selectedSlot;
-                return (
-                  <motion.button
-                    key={slot.startUtc}
-                    type="button"
-                    variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1 } }}
-                    whileTap={reduce ? undefined : { scale: 0.95 }}
-                    onClick={() => setSelectedSlot(value)}
-                    className="relative py-3 text-center text-sm font-semibold"
-                    style={slotStyle(active)}
-                  >
-                    {slot.label}
-                  </motion.button>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
-
-          {visibleSlots.length === 0 && !slotsBusy ? (
+          {staffRequired && !staffId ? (
             <div
               className="flex items-center gap-3 px-4 py-5 text-sm"
-              style={{ borderRadius: radius, backgroundColor: "rgb(254 252 232)", color: "rgb(133 77 14)" }}
+              style={{ borderRadius: radius, backgroundColor: dark ? "rgb(39 39 42)" : "rgb(244 244 245)", color: dark ? "rgb(161 161 170)" : "rgb(82 82 91)" }}
             >
-              <CalendarDays size={18} />
-              {slotShift ? "Este turno no tiene horarios para esta fecha. Prueba otro día o el otro turno." : "No hay horarios para esta fecha. Prueba con otro día."}
+              <Clock size={18} /> Elige a tu barbero para ver los horarios.
             </div>
-          ) : null}
+          ) : (
+            <>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${selectedService?.id}-${selectedDate}-${slotShift ?? "all"}`}
+                  initial={reduce ? false : "hidden"}
+                  animate="show"
+                  variants={{ show: { transition: { staggerChildren: 0.025 } } }}
+                  className="grid grid-cols-3 gap-2 sm:grid-cols-4"
+                  style={{ opacity: slotsBusy ? 0.5 : 1, transition: "opacity 180ms ease" }}
+                >
+                  {visibleSlots.map((slot) => {
+                    const value = `${slot.startUtc}|${slot.endUtc}`;
+                    const active = value === selectedSlot;
+                    return (
+                      <motion.button
+                        key={slot.startUtc}
+                        type="button"
+                        variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1 } }}
+                        whileTap={reduce ? undefined : { scale: 0.95 }}
+                        onClick={() => setSelectedSlot(value)}
+                        className="relative py-3 text-center text-sm font-semibold"
+                        style={slotStyle(active)}
+                      >
+                        {slot.label}
+                      </motion.button>
+                    );
+                  })}
+                </motion.div>
+              </AnimatePresence>
+
+              {visibleSlots.length === 0 && !slotsBusy ? (
+                <div
+                  className="flex items-center gap-3 px-4 py-5 text-sm"
+                  style={{ borderRadius: radius, backgroundColor: "rgb(254 252 232)", color: "rgb(133 77 14)" }}
+                >
+                  <CalendarDays size={18} />
+                  {slotShift ? "Este turno no tiene horarios para esta fecha. Prueba otro día o el otro turno." : "No hay horarios para esta fecha. Prueba con otro día."}
+                </div>
+              ) : null}
+            </>
+          )}
         </div>
 
         {/* Datos de contacto */}
@@ -403,12 +422,14 @@ export function BookingForm({
         <button
           className="btn btn-accent mt-6 w-full"
           style={{ height: 52, borderRadius: radius }}
-          disabled={pending || !selectedService || visibleSlots.length === 0 || !selectedSlot}
+          disabled={pending || !selectedService || (staffRequired && !staffId) || visibleSlots.length === 0 || !selectedSlot}
         >
           {pending ? (
             <>
               <Loader2 size={18} className="animate-spin" /> Confirmando…
             </>
+          ) : staffRequired && !staffId ? (
+            "Elige un barbero"
           ) : selectedSlot ? (
             <>
               <Check size={18} /> Confirmar reserva

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ArrowLeft, Scissors } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
@@ -11,9 +12,27 @@ import type { NicheLayoutProps } from "@/components/niche/types";
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const GOLD = "#C9A227";
 
-export function BlackFoldAppointment({ business, services, selectedService, selectedDate, slots, design, appointmentName }: NicheLayoutProps) {
+export function BlackFoldAppointment({
+  business,
+  services,
+  selectedService,
+  selectedDate,
+  slots,
+  design,
+  appointmentName,
+  barbers,
+  selectedBarber
+}: NicheLayoutProps) {
   const card = useRef<HTMLDivElement>(null);
-  const [barbero, setBarbero] = useState("");
+  const router = useRouter();
+
+  function pickBarber(id: string) {
+    const params = new URLSearchParams();
+    if (selectedService) params.set("service", selectedService.id);
+    params.set("date", selectedDate);
+    params.set("barbero", id);
+    router.push(`?${params.toString()}`, { scroll: false });
+  }
 
   useIso(() => {
     if (!card.current) return;
@@ -31,7 +50,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
       <header className="border-b border-white/5 bg-[#0B0B0B]/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
           <Link href={`/${business.slug}`} className="flex items-center gap-2 text-lg font-bold tracking-widest" style={{ fontFamily: "var(--font-oswald)" }}>
-            <Scissors size={20} style={{ color: GOLD }} /> PATRON<span style={{ color: GOLD }}>BARBER</span>
+            <Scissors size={20} style={{ color: GOLD }} /> PATRÓN<span style={{ color: GOLD }}>BARBERÍA</span>
           </Link>
           <Link href={`/${business.slug}`} className="inline-flex items-center gap-2 py-2.5 -my-2.5 text-sm text-[#B9B9B9] transition hover:text-white">
             <ArrowLeft size={16} /> Volver al inicio
@@ -54,7 +73,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
         </div>
 
         <div ref={card}>
-          <BarberPicker value={barbero} onChange={setBarbero} />
+          <BarberPicker barbers={barbers ?? []} value={selectedBarber} onChange={pickBarber} />
           <BookingForm
             business={business}
             services={services}
@@ -64,14 +83,15 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
             design={design}
             appointmentName={appointmentName}
             dark
-            extraNote={barbero ? `Barbero de preferencia: ${barbero}` : undefined}
+            staffId={selectedBarber}
+            staffRequired
             commentsField
           />
         </div>
 
         <p className="mt-10 text-center text-sm text-[#6A6A6A]">
           <Link href={`/${business.slug}`} className="inline-block py-2.5 -my-2.5 transition hover:text-white" style={{ color: GOLD }}>
-            ← Volver a PATRON BARBER
+            ← Volver a PATRÓN BARBERÍA
           </Link>
         </p>
       </main>
