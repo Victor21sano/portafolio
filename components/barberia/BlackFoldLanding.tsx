@@ -247,7 +247,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
               <a href="#" aria-label="Instagram" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Instagram size={18} /></a>
               <a href="#" aria-label="Facebook" className="grid h-10 w-10 place-items-center rounded-full border border-white/10 transition hover:border-[#C9A227]/60" style={{ color: GOLD }}><Facebook size={18} /></a>
             </div>
-            <Link href={agendar} className="mt-5 inline-block py-2.5 -my-2.5 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
+            <Link href={agendar} className="mt-3 inline-block py-2.5 font-semibold" style={{ color: GOLD }}>Agendar cita →</Link>
           </div>
         </div>
         <p className="mx-auto mt-10 max-w-7xl px-5 text-xs text-[#5A5A5A]">© {new Date().getFullYear()} BLACK FOLD BARBER. Todos los derechos reservados.</p>

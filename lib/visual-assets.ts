@@ -15,9 +15,9 @@ export const BARBER_IMAGES = {
   ],
   // Retratos del equipo para el selector de barbero (Carlos, Miguel, Andrés).
   team: [
-    unsplash("1599351431202-1e0f0137899a", 600),
-    unsplash("1621605815971-fbc98d665033", 600),
-    unsplash("1588771930296-88c2cb03f386", 600)
+    unsplash("1506794778202-cad84cf45f1d", 600),
+    unsplash("1567894340315-735d7c361db0", 600),
+    unsplash("1618077360395-f3068be8e001", 600)
   ]
 };
 
