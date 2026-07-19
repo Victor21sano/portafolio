@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { ArrowLeft, Scissors } from "lucide-react";
 import { BookingForm } from "@/components/BookingForm";
@@ -11,9 +12,27 @@ import type { NicheLayoutProps } from "@/components/niche/types";
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const GOLD = "#C9A227";
 
-export function BlackFoldAppointment({ business, services, selectedService, selectedDate, slots, design, appointmentName }: NicheLayoutProps) {
+export function BlackFoldAppointment({
+  business,
+  services,
+  selectedService,
+  selectedDate,
+  slots,
+  design,
+  appointmentName,
+  barbers,
+  selectedBarber
+}: NicheLayoutProps) {
   const card = useRef<HTMLDivElement>(null);
-  const [barbero, setBarbero] = useState("");
+  const router = useRouter();
+
+  function pickBarber(id: string) {
+    const params = new URLSearchParams();
+    if (selectedService) params.set("service", selectedService.id);
+    params.set("date", selectedDate);
+    params.set("barbero", id);
+    router.push(`?${params.toString()}`, { scroll: false });
+  }
 
   useIso(() => {
     if (!card.current) return;
@@ -54,7 +73,7 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
         </div>
 
         <div ref={card}>
-          <BarberPicker value={barbero} onChange={setBarbero} />
+          <BarberPicker barbers={barbers ?? []} value={selectedBarber} onChange={pickBarber} />
           <BookingForm
             business={business}
             services={services}
@@ -64,7 +83,8 @@ export function BlackFoldAppointment({ business, services, selectedService, sele
             design={design}
             appointmentName={appointmentName}
             dark
-            extraNote={barbero ? `Barbero de preferencia: ${barbero}` : undefined}
+            staffId={selectedBarber}
+            staffRequired
             commentsField
           />
         </div>

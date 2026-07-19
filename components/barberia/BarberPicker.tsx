@@ -2,34 +2,26 @@
 
 import Image from "next/image";
 import { Scissors } from "lucide-react";
-import { BARBER_IMAGES } from "@/lib/visual-assets";
+import type { BarberInfo } from "@/lib/types";
 
 const GOLD = "#C9A227";
 
-type Barber = { nombre: string; especialidad: string; foto: string };
-
-const BARBERS: Barber[] = [
-  { nombre: "Carlos", especialidad: "Fades y degradados", foto: BARBER_IMAGES.team[0] },
-  { nombre: "Miguel", especialidad: "Barba y perfilado", foto: BARBER_IMAGES.team[1] },
-  { nombre: "Andrés", especialidad: "Cortes clásicos", foto: BARBER_IMAGES.team[2] }
-];
-
-/** Selector visual de barbero. La elección viaja como nota de la cita (extraNote). */
-export function BarberPicker({ value, onChange }: { value: string; onChange: (nombre: string) => void }) {
+/** Selector de barbero obligatorio. La cita se guarda con su staff_id. */
+export function BarberPicker({ barbers, value, onChange }: { barbers: BarberInfo[]; value?: string; onChange: (id: string) => void }) {
   return (
     <section aria-label="Elige tu barbero" className="mb-8">
       <p className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#9A9A9A]">
         <Scissors size={14} style={{ color: GOLD }} /> Elige tu barbero
       </p>
-      <div className="grid grid-cols-3 gap-3 sm:gap-4">
-        {BARBERS.map((b) => {
-          const active = value === b.nombre;
+      <div className="mx-auto grid max-w-md grid-cols-2 gap-3 sm:gap-4">
+        {barbers.map((b) => {
+          const active = value === b.id;
           return (
             <button
-              key={b.nombre}
+              key={b.id}
               type="button"
               aria-pressed={active}
-              onClick={() => onChange(active ? "" : b.nombre)}
+              onClick={() => onChange(b.id)}
               className="group overflow-hidden rounded-xl border bg-[#141414] text-left transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{
                 borderColor: active ? GOLD : "rgba(255,255,255,0.1)",
@@ -57,18 +49,9 @@ export function BarberPicker({ value, onChange }: { value: string; onChange: (no
           );
         })}
       </div>
-      <button
-        type="button"
-        aria-pressed={value === ""}
-        onClick={() => onChange("")}
-        className="mt-3 w-full rounded-lg border px-4 py-2.5 text-sm transition duration-200"
-        style={{
-          borderColor: value === "" ? "rgba(201,162,39,0.6)" : "rgba(255,255,255,0.1)",
-          color: value === "" ? GOLD : "#8A8A8A"
-        }}
-      >
-        Sin preferencia — cualquier barbero disponible
-      </button>
+      {!value ? (
+        <p className="mt-4 text-center text-sm text-[#9A9A9A]">Elige a tu barbero para ver sus horarios disponibles.</p>
+      ) : null}
     </section>
   );
 }
