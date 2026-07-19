@@ -7,6 +7,7 @@ import { LunaNailAppointment } from "@/components/manicurista/LunaNailAppointmen
 import { VelvetLashAppointment } from "@/components/lashista/VelvetLashAppointment";
 import { VitaliaAppointment } from "@/components/medico/VitaliaAppointment";
 import { RaizTherapyAppointment } from "@/components/terapeuta/RaizTherapyAppointment";
+import type { BarberInfo } from "@/lib/types";
 import type { NicheLayoutProps } from "@/components/niche/types";
 
 export const dynamic = "force-dynamic";
@@ -83,7 +84,7 @@ export default async function AgendarPage({
   searchParams
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ service?: string; date?: string }>;
+  searchParams: Promise<{ service?: string; date?: string; barbero?: string }>;
 }) {
   const { slug } = await params;
   const query = await searchParams;
@@ -99,7 +100,13 @@ export default async function AgendarPage({
   const services = await getBusinessServices(business.id);
   const selectedService = services.find((service) => service.id === query.service) ?? services[0] ?? null;
   const selectedDate = query.date ?? todayInTz(business.timezone);
-  const slots = selectedService ? await getAvailableSlots(business, selectedService, selectedDate) : [];
+  const barbers: BarberInfo[] = business.branding_json?.barberos ?? [];
+  const selectedBarber = barbers.find((b) => b.id === query.barbero)?.id;
+  const needsBarber = barbers.length > 0 && !selectedBarber;
+  const slots =
+    selectedService && !needsBarber
+      ? await getAvailableSlots(business, selectedService, selectedDate, selectedBarber)
+      : [];
   const design = nicheDesign(business.nicho);
   const appointmentName = business.branding_json?.appointmentName ?? "cita";
 
@@ -115,7 +122,10 @@ export default async function AgendarPage({
         slots={slots}
         design={design}
         appointmentName={appointmentName}
+        barbers={barbers}
+        selectedBarber={selectedBarber}
       />
     </main>
   );
 }
+
