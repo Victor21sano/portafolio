@@ -5,7 +5,7 @@ insert into businesses (
 (
   '11111111-1111-1111-1111-111111111111',
   'barberia-norte',
-  'Barberia Norte',
+  'PatronBarber',
   'barberia',
   'America/Mexico_City',
   'dueno@barberianorte.test',
