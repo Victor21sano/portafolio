@@ -79,3 +79,11 @@ export type Slot = {
   endUtc: string;
   label: string;
 };
+
+/** Presentación de un barbero/staff (vive en businesses.branding_json.barberos). */
+export type BarberInfo = {
+  id: string;
+  nombre: string;
+  especialidad: string;
+  foto: string;
+};
