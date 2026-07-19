@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, Facebook, ChevronRight } from "lucide-react";
+import { Scissors, Sparkles, Crown, Clock, Star, Menu, X, MapPin, Phone, Instagram, Facebook, ChevronRight, Zap, Droplets } from "lucide-react";
 import { BARBER_IMAGES } from "@/lib/visual-assets";
 
 const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -13,10 +13,11 @@ const useIso = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 const GOLD = "#C9A227";
 
 const SERVICES = [
-  { icon: Scissors, name: "Corte clásico", desc: "Tijera y máquina con acabado limpio y atemporal.", price: "$180" },
-  { icon: Sparkles, name: "Fade / Degradado", desc: "Degradados precisos, del skin fade al taper.", price: "$220" },
-  { icon: Crown, name: "Arreglo de barba", desc: "Perfilado, toalla caliente y aceite premium.", price: "$140" },
-  { icon: Star, name: "Corte + barba", desc: "La experiencia completa BLACK FOLD.", price: "$280" }
+  { icon: Scissors, name: "Corte de cabello", desc: "Corte a tu medida, tijera y máquina con acabado limpio.", price: "$185" },
+  { icon: Crown, name: "Delineado de barba", desc: "Perfilado preciso con toalla caliente y producto premium.", price: "$120" },
+  { icon: Sparkles, name: "Delineado de ceja", desc: "Línea limpia que enmarca tu rostro.", price: "$50" },
+  { icon: Zap, name: "Grecas y diseños", desc: "Diseños freestyle y grecas con detalle fino.", price: "$50" },
+  { icon: Droplets, name: "Pigmentación", desc: "Rellena y define zonas despobladas de barba o cabello.", price: "$30" }
 ];
 
 const BENEFITS = [
@@ -136,7 +137,7 @@ export function BlackFoldLanding({ slug }: { slug: string }) {
             <h2 className="text-4xl font-bold uppercase sm:text-5xl" style={{ fontFamily: "var(--font-oswald)" }}>Nuestros servicios</h2>
             <p className="mt-3 text-[#8A8A8A]">Precisión y estilo en cada detalle.</p>
           </div>
-          <div className="stagger-fade grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="stagger-fade grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES.map((s) => (
               <div
                 key={s.name}

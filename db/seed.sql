@@ -29,9 +29,11 @@ insert into businesses (
 on conflict (slug) do nothing;
 
 insert into services (business_id, nombre, descripcion, duracion_min, precio, activo) values
-('11111111-1111-1111-1111-111111111111', 'Corte clasico', 'Corte a tijera o maquina con acabado limpio.', 45, 180, true),
-('11111111-1111-1111-1111-111111111111', 'Corte + barba', 'Servicio completo con perfilado de barba.', 75, 280, true),
-('11111111-1111-1111-1111-111111111111', 'Barba premium', 'Toalla caliente, perfilado y producto final.', 30, 140, true)
+('11111111-1111-1111-1111-111111111111', 'Corte de cabello', 'Corte a tu medida con acabado limpio.', 45, 185, true),
+('11111111-1111-1111-1111-111111111111', 'Delineado de barba', 'Perfilado preciso con toalla caliente.', 30, 120, true),
+('11111111-1111-1111-1111-111111111111', 'Delineado de ceja', 'Linea limpia que enmarca el rostro.', 15, 50, true),
+('11111111-1111-1111-1111-111111111111', 'Grecas y disenos', 'Disenos freestyle y grecas con detalle fino.', 30, 50, true),
+('11111111-1111-1111-1111-111111111111', 'Pigmentacion', 'Rellena y define zonas despobladas.', 30, 30, true)
 on conflict do nothing;
 
 insert into working_hours (business_id, dia_semana, hora_inicio, hora_fin)
